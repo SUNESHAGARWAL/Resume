@@ -3,17 +3,42 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { FaCode, FaBrain, FaRobot } from "react-icons/fa";
-import { SiPython, SiTensorflow, SiPytorch, SiKeras, SiGit, SiDocker } from "react-icons/si";
 import { portfolioConfig } from "@/config/portfolio";
+import TechIcon from "./TechIcon";
 
-// Skill logo mapping - using available icons
-const skillLogos: { [key: string]: any } = {
-  "Python": SiPython,
-  "TensorFlow": SiTensorflow,
-  "PyTorch": SiPytorch,
-  "Keras": SiKeras,
-  "Git": SiGit,
-  "Docker": SiDocker,
+// Mapping of skill names to simple-icons slugs
+const skillIconMap: { [key: string]: string | null } = {
+  // Languages & Tools
+  "Python": "Python",
+  "TensorFlow": "Tensorflow",
+  "PyTorch": "Pytorch",
+  "Keras": "Keras",
+  "MLFlow": "Mlflow",
+  "Git": "Git",
+  "Azure ML": "Microsoftazure",
+  "Databricks": "Databricks",
+  "Docker": "Docker",
+  "Genie": "Aladdin", // Using a placeholder icon
+
+  // For text-based skills without logos, we'll use null
+  "Statistical Modeling": null,
+  "Supervised & Unsupervised Learning": null,
+  "Time-Series Forecasting": null,
+  "Anomaly Detection": null,
+  "Deep Learning": null,
+  "NLP": null,
+  "Ensemble Methods": null,
+
+  // GenAI
+  "Transformer Models": "Openai",
+  "RAG (Retrieval-Augmented Generation)": null,
+  "Prompt Engineering": null,
+  "LLM Evaluation": null,
+  "Langchain": "Langchain",
+  "Langgraph": null,
+  "Huggingface": "Huggingface",
+  "Agentic AI Workflows": null,
+  "AG2": null,
 };
 
 const iconMap: { [key: string]: React.ElementType } = {
@@ -124,18 +149,22 @@ export default function Skills() {
                     {/* Skills Grid */}
                     <div className="relative grid grid-cols-2 gap-3">
                       {category.skills.map((skill, skillIndex) => {
-                        const SkillIcon = skillLogos[skill];
+                        const iconSlug = skillIconMap[skill];
+                        const hasIcon = iconSlug !== null && iconSlug !== undefined;
+
                         return (
                           <motion.div
                             key={skillIndex}
                             whileHover={{ scale: 1.1, rotateZ: 2 }}
                             className="relative group/skill flex items-center gap-2 px-3 py-3 glass rounded-xl border border-white/5 hover:border-indigo-500/50 transition-all duration-300 cursor-pointer"
                           >
-                            {SkillIcon && (
-                              <SkillIcon className="text-2xl text-indigo-400 group-hover/skill:text-indigo-300 transition-colors" />
-                            )}
-                            {!SkillIcon && (
-                              <div className="w-6 h-6 rounded bg-gradient-to-br from-indigo-500 to-purple-500" />
+                            {hasIcon ? (
+                              <TechIcon
+                                iconName={iconSlug}
+                                className="w-6 h-6 text-indigo-400 group-hover/skill:text-indigo-300 transition-colors flex-shrink-0"
+                              />
+                            ) : (
+                              <div className="w-6 h-6 rounded bg-gradient-to-br from-indigo-500 to-purple-500 flex-shrink-0" />
                             )}
                             <span className="text-sm font-medium text-gray-300 group-hover/skill:text-white transition-colors">
                               {skill}
