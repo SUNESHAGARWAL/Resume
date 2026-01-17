@@ -18,27 +18,27 @@ const skillIconMap: { [key: string]: string | null } = {
   "Azure ML": "Microsoftazure",
   "Databricks": "Databricks",
   "Docker": "Docker",
-  "Genie": "Aladdin", // Using a placeholder icon
+  "Genie": "Databricks", // Using Databricks as it's a data platform
 
-  // For text-based skills without logos, we'll use null
-  "Statistical Modeling": null,
-  "Supervised & Unsupervised Learning": null,
-  "Time-Series Forecasting": null,
-  "Anomaly Detection": null,
-  "Deep Learning": null,
-  "NLP": null,
-  "Ensemble Methods": null,
+  // Machine Learning - Using closest representative icons
+  "Statistical Modeling": "Googleanalytics", // Analytics/statistics tool
+  "Supervised & Unsupervised Learning": "Scikitlearn", // Popular ML library
+  "Time-Series Forecasting": "Plotly", // Data visualization/forecasting
+  "Anomaly Detection": "Elastic", // Known for anomaly detection capabilities
+  "Deep Learning": "Pytorch", // Using PyTorch as representative deep learning icon
+  "NLP": "Spacy", // Popular NLP library
+  "Ensemble Methods": "Scikitlearn", // Scikit-learn for ensemble methods
 
-  // GenAI
-  "Transformer Models": "Openai",
-  "RAG (Retrieval-Augmented Generation)": null,
-  "Prompt Engineering": null,
-  "LLM Evaluation": null,
+  // GenAI - Using closest AI/ML related icons
+  "Transformer Models": "Openai", // OpenAI for transformer models
+  "RAG (Retrieval-Augmented Generation)": "Pinecone", // Vector database for RAG
+  "Prompt Engineering": "Openai", // OpenAI for prompt engineering
+  "LLM Evaluation": "Wandb", // Weights & Biases for ML evaluation
   "Langchain": "Langchain",
-  "Langgraph": null,
+  "Langgraph": "Langchain", // Using Langchain logo for Langgraph (related project)
   "Huggingface": "Huggingface",
-  "Agentic AI Workflows": null,
-  "AG2": null,
+  "Agentic AI Workflows": "N8n", // Workflow automation platform
+  "AG2": "Microsoft", // AG2 is from Microsoft Research
 };
 
 const iconMap: { [key: string]: React.ElementType } = {

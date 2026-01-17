@@ -15,8 +15,8 @@ export default function Hero() {
     }
   };
 
-  const scrollToProjects = () => {
-    const element = document.querySelector("#projects");
+  const scrollToExperience = () => {
+    const element = document.querySelector("#experience");
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
@@ -103,7 +103,7 @@ export default function Hero() {
             className="flex flex-col sm:flex-row gap-6 justify-center mb-16"
           >
             <button
-              onClick={scrollToProjects}
+              onClick={scrollToExperience}
               className="group relative px-10 py-5 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold text-lg rounded-xl overflow-hidden shadow-2xl shadow-indigo-600/50 hover:shadow-indigo-600/70 transform hover:scale-105 transition-all duration-300"
             >
               <span className="relative z-10">{hero.cta.primary}</span>
