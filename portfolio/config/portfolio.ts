@@ -29,7 +29,7 @@ export const portfolioConfig = {
       secondary: "Get In Touch",
     },
     // Add your profile image here
-    profileImage: "/images/profile.jpg", // Add your photo to public/images/
+    profileImage: "/images/about_compressed.jpg", // Add your photo to public/images/
   },
 
   // About Section
@@ -43,9 +43,9 @@ export const portfolioConfig = {
     image: "/images/about_compressed.jpg", // Compressed version for better performance
     stats: [
       { value: "8+", label: "Years Experience" },
-      { value: "€500K+", label: "Cost Savings" },
-      { value: "60%", label: "Time Reduction" },
-      { value: "35+", label: "Data Sources Integrated" },
+      { value: "€500K+", label: "Cost Savings Y-o-Y" },
+      { value: "60%", label: "Time Reduction in Processes" },
+      { value: "35+", label: "Deployed E2E Solutions" },
     ],
   },
 
