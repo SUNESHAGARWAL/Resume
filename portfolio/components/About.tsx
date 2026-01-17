@@ -57,28 +57,13 @@ export default function About() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Image */}
             <motion.div variants={itemVariants} className="order-2 lg:order-1">
-              <div className="relative w-full h-96 lg:h-[500px] rounded-2xl overflow-hidden shadow-2xl shadow-indigo-500/20">
-                <div className="w-full h-full bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 p-1">
-                  <div className="w-full h-full glass rounded-2xl flex items-center justify-center bg-gradient-to-br from-gray-900/80 to-gray-800/50 backdrop-blur-xl">
-                    {/* Replace this div with actual Image component when you add your photo */}
-                    <div className="text-center p-8">
-                      <p className="text-gray-400 text-sm">
-                        Add your photo to
-                      </p>
-                      <p className="text-indigo-400 font-mono text-xs mt-2">
-                        public/images/about.jpg
-                      </p>
-                    </div>
-                    {/* Uncomment when you add your image:
-                    <Image
-                      src={about.image}
-                      alt="About me"
-                      fill
-                      className="object-cover rounded-2xl"
-                    />
-                    */}
-                  </div>
-                </div>
+              <div className="relative w-full h-96 lg:h-[500px] overflow-hidden">
+                <Image
+                  src={about.image}
+                  alt="About me"
+                  fill
+                  className="object-cover"
+                />
               </div>
             </motion.div>
 
