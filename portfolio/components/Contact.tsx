@@ -65,8 +65,23 @@ export default function Contact() {
   ];
 
   return (
-    <section id="contact" className="py-20 bg-white dark:bg-gray-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="contact" className="relative py-24 bg-black overflow-hidden">
+      {/* Dot grid pattern background */}
+      <div className="absolute inset-0 opacity-5">
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `radial-gradient(circle, rgba(99, 102, 241, 0.3) 1px, transparent 1px)`,
+            backgroundSize: '30px 30px'
+          }}
+        />
+      </div>
+
+      {/* Floating geometric accents */}
+      <div className="absolute top-32 left-20 w-96 h-96 border-2 border-purple-500/10 rotate-45 rounded-full" />
+      <div className="absolute bottom-20 right-20 w-72 h-72 border-2 border-indigo-500/10 -rotate-12 rounded-3xl" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           ref={ref}
           initial="hidden"
@@ -74,12 +89,12 @@ export default function Contact() {
           variants={containerVariants}
         >
           {/* Section Title */}
-          <motion.div variants={itemVariants} className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+          <motion.div variants={itemVariants} className="text-center mb-20">
+            <h2 className="text-5xl md:text-6xl font-bold gradient-text mb-6">
               {contactSection.title}
             </h2>
-            <div className="w-20 h-1 bg-gradient-to-r from-indigo-600 to-purple-600 mx-auto rounded-full mb-6"></div>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            <div className="w-24 h-1.5 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 mx-auto rounded-full mb-8" />
+            <p className="text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed">
               {contactSection.description}
             </p>
           </motion.div>
@@ -94,20 +109,20 @@ export default function Contact() {
                 href={method.href}
                 target={method.href.startsWith("http") ? "_blank" : undefined}
                 rel={method.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                className={`bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-gray-800 dark:to-gray-700 rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-indigo-200 dark:border-gray-600 ${
+                className={`glass rounded-xl p-6 hover-lift border border-white/10 backdrop-blur-xl bg-gradient-to-br from-gray-900/80 to-gray-800/50 group ${
                   method.label === "Location" ? "cursor-default" : "cursor-pointer"
                 }`}
                 onClick={method.label === "Location" ? (e) => e.preventDefault() : undefined}
               >
                 <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0 p-3 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-lg shadow-lg">
+                  <div className="flex-shrink-0 p-3 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-lg shadow-lg shadow-indigo-500/50 animate-glow">
                     <method.icon className="text-white text-2xl" />
                   </div>
                   <div className="flex-grow min-w-0">
-                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">
+                    <h3 className="text-lg font-semibold text-white mb-1 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-indigo-400 group-hover:to-purple-400 transition-all">
                       {method.label}
                     </h3>
-                    <p className="text-sm text-gray-600 dark:text-gray-400 break-words">
+                    <p className="text-sm text-gray-400 break-words">
                       {method.value}
                     </p>
                   </div>
@@ -122,14 +137,14 @@ export default function Contact() {
               variants={itemVariants}
               className="mt-16 max-w-2xl mx-auto"
             >
-              <div className="relative h-64 rounded-2xl overflow-hidden shadow-2xl">
-                <div className="w-full h-full bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500">
-                  <div className="w-full h-full bg-gray-200 dark:bg-gray-800 flex items-center justify-center">
+              <div className="relative h-64 rounded-2xl overflow-hidden shadow-2xl shadow-indigo-500/20">
+                <div className="w-full h-full bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600">
+                  <div className="w-full h-full glass flex items-center justify-center bg-gradient-to-br from-gray-900/80 to-gray-800/50">
                     <div className="text-center p-4">
-                      <p className="text-gray-600 dark:text-gray-400 text-sm">
+                      <p className="text-gray-400 text-sm">
                         Add contact image to
                       </p>
-                      <p className="text-indigo-600 dark:text-indigo-400 font-mono text-xs mt-2">
+                      <p className="text-indigo-400 font-mono text-xs mt-2">
                         {contactSection.image}
                       </p>
                     </div>

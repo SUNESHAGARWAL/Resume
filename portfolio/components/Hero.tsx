@@ -2,9 +2,8 @@
 
 import { motion } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
-import { FaGithub, FaLinkedin, FaEnvelope, FaPhone } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaEnvelope, FaPhone, FaArrowDown } from "react-icons/fa";
 import { portfolioConfig } from "@/config/portfolio";
-import Image from "next/image";
 
 export default function Hero() {
   const { hero, contact } = portfolioConfig;
@@ -16,176 +15,149 @@ export default function Hero() {
     }
   };
 
-  const scrollToProjects = () => {
-    const element = document.querySelector("#projects");
+  const scrollToExperience = () => {
+    const element = document.querySelector("#experience");
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
   };
 
   return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-white via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-indigo-950 dark:to-purple-950">
-      {/* Animated background elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-300 dark:bg-purple-900 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-xl opacity-70 animate-blob"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-indigo-300 dark:bg-indigo-900 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-pink-300 dark:bg-pink-900 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
+    <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
+      {/* Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black" />
+
+      {/* Animated Grid */}
+      <div className="absolute inset-0 opacity-20">
+        <div className="absolute inset-0"
+          style={{
+            backgroundImage: `
+              linear-gradient(rgba(99, 102, 241, 0.1) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(99, 102, 241, 0.1) 1px, transparent 1px)
+            `,
+            backgroundSize: '50px 50px'
+          }}
+        />
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Text Content */}
+      {/* Content */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 relative z-10">
+        <div className="text-center">
+          {/* Greeting */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center lg:text-left"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="mb-8"
           >
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.8 }}
-              className="text-lg sm:text-xl font-medium text-gray-600 dark:text-gray-400 mb-2"
-            >
+            <span className="inline-block px-4 py-2 bg-indigo-600/10 border border-indigo-500/20 rounded-full text-indigo-400 font-semibold text-sm tracking-wide uppercase backdrop-blur-sm">
               {hero.greeting}
-            </motion.h2>
-
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.8 }}
-              className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-4"
-            >
-              {hero.name}
-            </motion.h1>
-
-            <div className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 h-16">
-              <TypeAnimation
-                sequence={hero.titles.flatMap((title) => [title, 2000])}
-                wrapper="span"
-                speed={50}
-                repeat={Infinity}
-                className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent"
-              />
-            </div>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 0.8 }}
-              className="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-2xl"
-            >
-              {hero.description}
-            </motion.p>
-
-            {/* CTA Buttons */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6, duration: 0.8 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8"
-            >
-              <button
-                onClick={scrollToProjects}
-                className="px-8 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-medium rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
-              >
-                {hero.cta.primary}
-              </button>
-              <button
-                onClick={scrollToContact}
-                className="px-8 py-3 bg-white dark:bg-gray-800 text-gray-800 dark:text-white font-medium rounded-lg shadow-lg hover:shadow-xl border-2 border-indigo-600 dark:border-purple-600 transform hover:scale-105 transition-all duration-300"
-              >
-                {hero.cta.secondary}
-              </button>
-            </motion.div>
-
-            {/* Social Links */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7, duration: 0.8 }}
-              className="flex gap-4 justify-center lg:justify-start"
-            >
-              <a
-                href={contact.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-3 bg-gray-200 dark:bg-gray-800 rounded-full text-gray-700 dark:text-gray-300 hover:bg-indigo-600 hover:text-white dark:hover:bg-indigo-600 transform hover:scale-110 transition-all duration-300"
-              >
-                <FaGithub size={24} />
-              </a>
-              <a
-                href={contact.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-3 bg-gray-200 dark:bg-gray-800 rounded-full text-gray-700 dark:text-gray-300 hover:bg-indigo-600 hover:text-white dark:hover:bg-indigo-600 transform hover:scale-110 transition-all duration-300"
-              >
-                <FaLinkedin size={24} />
-              </a>
-              <a
-                href={`mailto:${contact.email}`}
-                className="p-3 bg-gray-200 dark:bg-gray-800 rounded-full text-gray-700 dark:text-gray-300 hover:bg-indigo-600 hover:text-white dark:hover:bg-indigo-600 transform hover:scale-110 transition-all duration-300"
-              >
-                <FaEnvelope size={24} />
-              </a>
-              <a
-                href={`tel:${contact.phone}`}
-                className="p-3 bg-gray-200 dark:bg-gray-800 rounded-full text-gray-700 dark:text-gray-300 hover:bg-indigo-600 hover:text-white dark:hover:bg-indigo-600 transform hover:scale-110 transition-all duration-300"
-              >
-                <FaPhone size={24} />
-              </a>
-            </motion.div>
+            </span>
           </motion.div>
 
-          {/* Profile Image */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            className="flex justify-center lg:justify-end"
+          {/* Name with 3D Effect - Resized */}
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-8 tracking-tight"
+            style={{
+              textShadow: '0 0 40px rgba(99, 102, 241, 0.5)',
+            }}
           >
-            <div className="relative w-80 h-80 lg:w-96 lg:h-96">
-              {/* Placeholder for profile image */}
-              <div className="w-full h-full rounded-full bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 p-1 shadow-2xl">
-                <div className="w-full h-full rounded-full bg-gray-200 dark:bg-gray-800 flex items-center justify-center overflow-hidden">
-                  {/* Replace this div with actual Image component when you add your photo */}
-                  <div className="text-center p-8">
-                    <p className="text-gray-600 dark:text-gray-400 text-sm">
-                      Add your photo to
-                    </p>
-                    <p className="text-indigo-600 dark:text-indigo-400 font-mono text-xs mt-2">
-                      public/images/profile.jpg
-                    </p>
-                  </div>
-                  {/* Uncomment when you add your image:
-                  <Image
-                    src={hero.profileImage}
-                    alt={hero.name}
-                    fill
-                    className="object-cover"
-                    priority
-                  />
-                  */}
-                </div>
-              </div>
+            <span className="gradient-text">{hero.name}</span>
+          </motion.h1>
 
-              {/* Decorative elements */}
-              <div className="absolute -top-4 -right-4 w-24 h-24 bg-yellow-400 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-xl opacity-70 animate-pulse"></div>
-              <div className="absolute -bottom-4 -left-4 w-24 h-24 bg-pink-400 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-xl opacity-70 animate-pulse animation-delay-2000"></div>
-            </div>
+          {/* Typing Animation */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="h-24 flex items-center justify-center mb-12"
+          >
+            <TypeAnimation
+              sequence={hero.titles.flatMap((title) => [title, 2500])}
+              wrapper="h2"
+              speed={50}
+              repeat={Infinity}
+              className="text-3xl sm:text-4xl md:text-5xl font-bold text-white/90"
+              style={{ fontFamily: 'Sora, sans-serif' }}
+            />
+          </motion.div>
+
+          {/* Description */}
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+            className="text-xl sm:text-2xl text-gray-400 mb-16 max-w-4xl mx-auto leading-relaxed"
+          >
+            {hero.description}
+          </motion.p>
+
+          {/* CTA Buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.7 }}
+            className="flex flex-col sm:flex-row gap-6 justify-center mb-16"
+          >
+            <button
+              onClick={scrollToExperience}
+              className="group relative px-10 py-5 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold text-lg rounded-xl overflow-hidden shadow-2xl shadow-indigo-600/50 hover:shadow-indigo-600/70 transform hover:scale-105 transition-all duration-300"
+            >
+              <span className="relative z-10">{hero.cta.primary}</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            </button>
+            <button
+              onClick={scrollToContact}
+              className="px-10 py-5 glass border-2 border-indigo-500/50 text-white font-bold text-lg rounded-xl hover:border-indigo-400 hover:bg-indigo-600/20 transform hover:scale-105 transition-all duration-300"
+            >
+              {hero.cta.secondary}
+            </button>
+          </motion.div>
+
+          {/* Social Links */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.9 }}
+            className="flex gap-6 justify-center"
+          >
+            {[
+              { Icon: FaGithub, href: contact.github, label: "GitHub" },
+              { Icon: FaLinkedin, href: contact.linkedin, label: "LinkedIn" },
+              { Icon: FaEnvelope, href: `mailto:${contact.email}`, label: "Email" },
+              { Icon: FaPhone, href: `tel:${contact.phone}`, label: "Phone" },
+            ].map(({ Icon, href, label }) => (
+              <a
+                key={label}
+                href={href}
+                target={href.startsWith("http") ? "_blank" : undefined}
+                rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+                className="group relative p-5 glass rounded-xl hover:bg-indigo-600/20 transform hover:scale-110 transition-all duration-300 border border-white/5 hover:border-indigo-500/50"
+                aria-label={label}
+              >
+                <Icon className="text-3xl text-gray-400 group-hover:text-indigo-400 transition-colors" />
+              </a>
+            ))}
           </motion.div>
         </div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* Scroll Indicator */}
       <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1, duration: 0.8, repeat: Infinity, repeatType: "reverse" }}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1, y: [0, 10, 0] }}
+        transition={{
+          opacity: { delay: 1.2, duration: 0.8 },
+          y: { repeat: Infinity, duration: 2, ease: "easeInOut" }
+        }}
+        className="absolute bottom-12 left-1/2 transform -translate-x-1/2"
       >
-        <div className="w-6 h-10 border-2 border-gray-400 dark:border-gray-600 rounded-full flex justify-center">
-          <div className="w-1 h-3 bg-gray-400 dark:bg-gray-600 rounded-full mt-2 animate-bounce"></div>
+        <div className="flex flex-col items-center gap-2">
+          <span className="text-gray-500 text-sm uppercase tracking-wider">Scroll Down</span>
+          <FaArrowDown className="text-indigo-500 text-xl" />
         </div>
       </motion.div>
     </section>

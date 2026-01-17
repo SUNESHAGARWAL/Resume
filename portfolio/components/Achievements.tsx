@@ -38,8 +38,27 @@ export default function Achievements() {
   };
 
   return (
-    <section id="achievements" className="py-20 bg-gray-50 dark:bg-gray-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="achievements" className="relative py-24 bg-black overflow-hidden">
+      {/* Circular pattern background */}
+      <div className="absolute inset-0 opacity-5">
+        {[...Array(8)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute border border-purple-500 rounded-full"
+            style={{
+              width: `${(i + 1) * 100}px`,
+              height: `${(i + 1) * 100}px`,
+              top: `${20 + i * 10}%`,
+              left: `${10 + i * 8}%`,
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Floating geometric accents */}
+      <div className="absolute top-20 right-10 w-72 h-72 border-2 border-indigo-500/10 -rotate-45 rounded-3xl" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           ref={ref}
           initial="hidden"
@@ -47,11 +66,11 @@ export default function Achievements() {
           variants={containerVariants}
         >
           {/* Section Title */}
-          <motion.div variants={itemVariants} className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+          <motion.div variants={itemVariants} className="text-center mb-20">
+            <h2 className="text-5xl md:text-6xl font-bold gradient-text mb-6">
               {achievements.title}
             </h2>
-            <div className="w-20 h-1 bg-gradient-to-r from-indigo-600 to-purple-600 mx-auto rounded-full"></div>
+            <div className="w-24 h-1.5 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 mx-auto rounded-full" />
           </motion.div>
 
           {/* Achievement Cards */}
@@ -64,17 +83,17 @@ export default function Achievements() {
                   key={index}
                   variants={itemVariants}
                   whileHover={{ y: -10 }}
-                  className="bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-200 dark:border-gray-700"
+                  className="glass rounded-2xl overflow-hidden hover-lift border border-white/10 backdrop-blur-xl bg-gradient-to-br from-gray-900/80 to-gray-800/50 group"
                 >
                   {/* Image Placeholder */}
-                  <div className="relative h-48 bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500">
-                    <div className="w-full h-full bg-gray-200 dark:bg-gray-800 flex items-center justify-center">
+                  <div className="relative h-48 bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600">
+                    <div className="w-full h-full glass flex items-center justify-center bg-gradient-to-br from-gray-900/80 to-gray-800/50">
                       {/* Replace with actual image when available */}
                       <div className="text-center p-4">
-                        <p className="text-gray-600 dark:text-gray-400 text-xs">
+                        <p className="text-gray-400 text-xs">
                           Add achievement image to
                         </p>
-                        <p className="text-indigo-600 dark:text-indigo-400 font-mono text-xs mt-1">
+                        <p className="text-indigo-400 font-mono text-xs mt-1">
                           {achievement.image}
                         </p>
                       </div>
@@ -89,25 +108,25 @@ export default function Achievements() {
                     </div>
 
                     {/* Icon Badge */}
-                    <div className="absolute top-4 right-4 p-4 bg-white dark:bg-gray-900 rounded-full shadow-lg">
+                    <div className="absolute top-4 right-4 p-4 glass bg-gradient-to-br from-indigo-600 to-purple-600 rounded-full shadow-lg shadow-indigo-500/50 animate-glow">
                       {IconComponent && (
-                        <IconComponent className="text-3xl text-indigo-600 dark:text-indigo-400" />
+                        <IconComponent className="text-white text-3xl" />
                       )}
                     </div>
                   </div>
 
                   {/* Content */}
                   <div className="p-8">
-                    <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+                    <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-indigo-400 group-hover:to-purple-400 transition-all">
                       {achievement.title}
                     </h3>
-                    <p className="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+                    <p className="text-gray-300 mb-6 leading-relaxed">
                       {achievement.description}
                     </p>
 
                     {/* Impact Badge */}
-                    <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-gray-800 dark:to-gray-700 rounded-full border border-indigo-200 dark:border-gray-600">
-                      <span className="text-sm font-semibold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">
+                    <div className="inline-flex items-center px-4 py-2 glass bg-indigo-600/20 rounded-full border border-indigo-500/30">
+                      <span className="text-sm font-semibold gradient-text">
                         Impact: {achievement.impact}
                       </span>
                     </div>

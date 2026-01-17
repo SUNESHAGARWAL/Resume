@@ -32,8 +32,14 @@ export default function About() {
   };
 
   return (
-    <section id="about" className="py-20 bg-white dark:bg-gray-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="about" className="relative py-24 bg-black overflow-hidden">
+      {/* Geometric background accents */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute top-40 right-20 w-80 h-80 border border-purple-500 -rotate-12 rounded-3xl" />
+        <div className="absolute bottom-40 left-20 w-64 h-64 border border-indigo-500 rotate-45" />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           ref={ref}
           initial="hidden"
@@ -41,25 +47,25 @@ export default function About() {
           variants={containerVariants}
         >
           {/* Section Title */}
-          <motion.div variants={itemVariants} className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+          <motion.div variants={itemVariants} className="text-center mb-20">
+            <h2 className="text-5xl md:text-6xl font-bold gradient-text mb-6">
               {about.title}
             </h2>
-            <div className="w-20 h-1 bg-gradient-to-r from-indigo-600 to-purple-600 mx-auto rounded-full"></div>
+            <div className="w-24 h-1.5 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 mx-auto rounded-full" />
           </motion.div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Image */}
             <motion.div variants={itemVariants} className="order-2 lg:order-1">
-              <div className="relative w-full h-96 lg:h-[500px] rounded-2xl overflow-hidden shadow-2xl">
+              <div className="relative w-full h-96 lg:h-[500px] rounded-2xl overflow-hidden shadow-2xl shadow-indigo-500/20">
                 <div className="w-full h-full bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 p-1">
-                  <div className="w-full h-full bg-gray-200 dark:bg-gray-800 rounded-2xl flex items-center justify-center">
+                  <div className="w-full h-full glass rounded-2xl flex items-center justify-center bg-gradient-to-br from-gray-900/80 to-gray-800/50 backdrop-blur-xl">
                     {/* Replace this div with actual Image component when you add your photo */}
                     <div className="text-center p-8">
-                      <p className="text-gray-600 dark:text-gray-400 text-sm">
+                      <p className="text-gray-400 text-sm">
                         Add your photo to
                       </p>
-                      <p className="text-indigo-600 dark:text-indigo-400 font-mono text-xs mt-2">
+                      <p className="text-indigo-400 font-mono text-xs mt-2">
                         public/images/about.jpg
                       </p>
                     </div>
@@ -82,7 +88,7 @@ export default function About() {
                 {about.description.map((paragraph, index) => (
                   <p
                     key={index}
-                    className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed"
+                    className="text-lg text-gray-300 leading-relaxed"
                   >
                     {paragraph}
                   </p>
@@ -99,12 +105,12 @@ export default function About() {
                     key={index}
                     variants={itemVariants}
                     whileHover={{ scale: 1.05 }}
-                    className="bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-gray-800 dark:to-gray-700 p-6 rounded-xl shadow-lg border border-indigo-100 dark:border-gray-600"
+                    className="glass rounded-xl p-6 hover-lift border border-white/10 backdrop-blur-xl bg-gradient-to-br from-gray-900/50 to-gray-800/30"
                   >
-                    <h3 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">
+                    <h3 className="text-3xl font-bold gradient-text">
                       {stat.value}
                     </h3>
-                    <p className="text-gray-600 dark:text-gray-300 mt-2 font-medium">
+                    <p className="text-gray-300 mt-2 font-medium">
                       {stat.label}
                     </p>
                   </motion.div>

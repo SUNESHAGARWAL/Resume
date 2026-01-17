@@ -33,8 +33,25 @@ export default function Projects() {
   };
 
   return (
-    <section id="projects" className="py-20 bg-white dark:bg-gray-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="projects" className="relative py-24 bg-black overflow-hidden">
+      {/* Grid pattern background */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute inset-0"
+          style={{
+            backgroundImage: `
+              linear-gradient(rgba(99, 102, 241, 0.1) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(99, 102, 241, 0.1) 1px, transparent 1px)
+            `,
+            backgroundSize: '40px 40px'
+          }}
+        />
+      </div>
+
+      {/* Floating geometric accents */}
+      <div className="absolute top-32 left-10 w-80 h-80 border-2 border-purple-500/10 rotate-12 rounded-3xl" />
+      <div className="absolute bottom-32 right-10 w-96 h-96 border-2 border-indigo-500/10 -rotate-6 rounded-full" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           ref={ref}
           initial="hidden"
@@ -42,11 +59,11 @@ export default function Projects() {
           variants={containerVariants}
         >
           {/* Section Title */}
-          <motion.div variants={itemVariants} className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+          <motion.div variants={itemVariants} className="text-center mb-20">
+            <h2 className="text-5xl md:text-6xl font-bold gradient-text mb-6">
               {projects.title}
             </h2>
-            <div className="w-20 h-1 bg-gradient-to-r from-indigo-600 to-purple-600 mx-auto rounded-full"></div>
+            <div className="w-24 h-1.5 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 mx-auto rounded-full" />
           </motion.div>
 
           {/* Projects Grid */}
@@ -56,17 +73,17 @@ export default function Projects() {
                 key={index}
                 variants={itemVariants}
                 whileHover={{ y: -10 }}
-                className="bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-gray-800 dark:to-gray-700 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 border border-indigo-200 dark:border-gray-600"
+                className="glass rounded-2xl overflow-hidden hover-lift border border-white/10 backdrop-blur-xl bg-gradient-to-br from-gray-900/80 to-gray-800/50 group"
               >
                 {/* Project Image */}
-                <div className="relative h-64 bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500">
-                  <div className="w-full h-full bg-gray-200 dark:bg-gray-800 flex items-center justify-center">
+                <div className="relative h-64 bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600">
+                  <div className="w-full h-full glass flex items-center justify-center bg-gradient-to-br from-gray-900/80 to-gray-800/50">
                     {/* Replace with actual image when available */}
                     <div className="text-center p-4">
-                      <p className="text-gray-600 dark:text-gray-400 text-sm">
+                      <p className="text-gray-400 text-sm">
                         Add project screenshot to
                       </p>
-                      <p className="text-indigo-600 dark:text-indigo-400 font-mono text-xs mt-2">
+                      <p className="text-indigo-400 font-mono text-xs mt-2">
                         {project.image}
                       </p>
                     </div>
@@ -83,10 +100,10 @@ export default function Projects() {
 
                 {/* Content */}
                 <div className="p-8">
-                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+                  <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-indigo-400 group-hover:to-purple-400 transition-all">
                     {project.title}
                   </h3>
-                  <p className="text-gray-600 dark:text-gray-300 mb-4">
+                  <p className="text-gray-300 mb-4 leading-relaxed">
                     {project.description}
                   </p>
 
@@ -95,7 +112,7 @@ export default function Projects() {
                     {project.technologies.map((tech, techIndex) => (
                       <span
                         key={techIndex}
-                        className="px-3 py-1 bg-white dark:bg-gray-900 text-indigo-600 dark:text-indigo-400 rounded-full text-xs font-medium border border-indigo-200 dark:border-gray-600"
+                        className="px-3 py-1 bg-indigo-600/20 text-indigo-300 rounded-full text-xs font-medium border border-indigo-500/30"
                       >
                         {tech}
                       </span>
@@ -107,7 +124,7 @@ export default function Projects() {
                     {project.highlights.map((highlight, highlightIndex) => (
                       <li
                         key={highlightIndex}
-                        className="text-sm text-gray-600 dark:text-gray-400 pl-4 border-l-2 border-indigo-400 dark:border-purple-500"
+                        className="text-sm text-gray-400 pl-4 border-l-2 border-indigo-500/50 hover:border-indigo-400 hover:text-gray-300 transition-all"
                       >
                         {highlight}
                       </li>
@@ -121,7 +138,7 @@ export default function Projects() {
                         href={project.links.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-2 px-4 py-2 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-lg hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors"
+                        className="flex items-center gap-2 px-4 py-2 glass border border-white/10 text-white rounded-lg hover:bg-indigo-600/20 hover:border-indigo-500/50 transition-colors"
                       >
                         <FaGithub />
                         <span className="text-sm font-medium">Code</span>
@@ -132,7 +149,7 @@ export default function Projects() {
                         href={project.links.demo}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-lg hover:shadow-lg transition-all"
+                        className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-lg hover:shadow-lg hover:shadow-indigo-500/50 transition-all"
                       >
                         <FaExternalLinkAlt />
                         <span className="text-sm font-medium">Demo</span>
