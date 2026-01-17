@@ -40,7 +40,7 @@ export const portfolioConfig = {
       "With expertise spanning Machine Learning, Deep Learning, NLP, and GenAI, I've delivered solutions that have saved millions in costs while significantly improving operational efficiency.",
       "My work focuses on developing cutting-edge AI solutions, from RAG-based conversational AI systems to predictive models that transform business workflows.",
     ],
-    image: "/images/about.jpg", // Add your photo here
+    image: "/images/about_compressed.jpg", // Compressed version for better performance
     stats: [
       { value: "8+", label: "Years Experience" },
       { value: "€500K+", label: "Cost Savings" },
