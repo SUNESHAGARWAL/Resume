@@ -8,10 +8,12 @@ import Projects from "@/components/Projects";
 import Education from "@/components/Education";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import GeometricBackground from "@/components/GeometricBackground";
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen relative">
+      <GeometricBackground />
       <Navbar />
       <Hero />
       <About />
